@@ -1,6 +1,6 @@
 package vn.tale.ub;
 
-import android.app.Application;
+import vn.tale.ub.api.GithubApi;
 import vn.tale.ub.ui.list.UserListApi;
 
 /**
@@ -8,6 +8,6 @@ import vn.tale.ub.ui.list.UserListApi;
  */
 public interface ApiModule {
 
-  UserListApi provideUserListApi(Application application);
+  UserListApi provideUserListApi(GithubApi githubApi);
 
 }
