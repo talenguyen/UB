@@ -25,6 +25,8 @@ public class App extends Application {
   }
 
   @NonNull protected DaggerAppComponent.Builder prepareAppComponentBuilder() {
-    return DaggerAppComponent.builder();
+    return DaggerAppComponent.builder()
+        .appModule(new AppModule(this))
+        .apiModule(new ApiModule());
   }
 }

@@ -14,6 +14,10 @@ import vn.tale.lcebinding.ThreadScheduler;
 @Module
 public class UserListModule {
 
+  @Provides public UserListAdapter provideUserListAdapter() {
+    return new UserListAdapter();
+  }
+
   @Provides public ThreadScheduler provideThreadScheduler() {
     return new ThreadScheduler() {
       @Override public Scheduler subscribeOn() {

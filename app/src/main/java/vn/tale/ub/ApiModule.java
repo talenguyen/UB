@@ -3,7 +3,7 @@ package vn.tale.ub;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
-import vn.tale.ub.ui.list.UserListVM;
+import vn.tale.ub.ui.list.UserListApi;
 
 /**
  * Author giangnguyen. Created on 3/29/16.
@@ -11,7 +11,7 @@ import vn.tale.ub.ui.list.UserListVM;
 @Module
 public class ApiModule {
 
-  @Provides @Singleton public UserListVM provideUserListVM() {
+  @Provides @Singleton public UserListApi provideUserListApi() {
     return null;
   }
 }
