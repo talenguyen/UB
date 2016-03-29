@@ -12,9 +12,16 @@ public abstract class ListAdapter<T, VH extends RecyclerView.ViewHolder> extends
   private final List<T> items = new ArrayList<>();
 
   public void setItems(List<T> items) {
-    items.clear();
-    items.addAll(items);
+    this.items.clear();
+    this.items.addAll(items);
     notifyDataSetChanged();
+  }
+
+  public T getItem(int position) {
+    if (position < 0 || position >= items.size()) {
+      return null;
+    }
+    return items.get(position);
   }
 
   @Override public int getItemCount() {

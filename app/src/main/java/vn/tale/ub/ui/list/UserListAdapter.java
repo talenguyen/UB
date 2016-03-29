@@ -1,10 +1,12 @@
 package vn.tale.ub.ui.list;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 import vn.tale.ub.R;
 import vn.tale.ub.model.User;
 import vn.tale.ub.ui.adapter.ListAdapter;
@@ -15,11 +17,13 @@ import vn.tale.ub.ui.adapter.ListAdapter;
 public class UserListAdapter extends ListAdapter<User, UserListAdapter.UserVH> {
 
   @Override public UserVH onCreateViewHolder(ViewGroup parent, int viewType) {
-    return null;
+    final LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+    final View view = layoutInflater.inflate(R.layout.item_user, parent, false);
+    return new UserVH(view);
   }
 
   @Override public void onBindViewHolder(UserVH holder, int position) {
-
+    holder.bind(getItem(position));
   }
 
   public static class UserVH extends RecyclerView.ViewHolder {
@@ -35,7 +39,7 @@ public class UserListAdapter extends ListAdapter<User, UserListAdapter.UserVH> {
 
     public void bind(User user) {
       tvDisplayName.setText(user.displayName());
-
+      Glide.with(ivAvatar.getContext()).load(user.avatarUrl()).into(ivAvatar);
     }
   }
 }

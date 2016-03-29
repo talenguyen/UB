@@ -1,5 +1,4 @@
 <resources>
-  <string name="app_name">UB</string>
   <string name="error_empty">No data</string>
   <string name="error_try_again">Error. Try again.</string>
 </resources>
