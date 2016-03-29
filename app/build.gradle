@@ -23,13 +23,25 @@ android {
   productFlavors {
     pro {
       applicationId = "vn.tale.ub"
+      resValue "string", "app_name", "UB"
     }
     dev {
       applicationId = "vn.tale.ub.dev"
+      resValue "string", "app_name", "UB Dev"
     }
     mock {
       applicationId = "vn.tale.ub.mock"
+      resValue "string", "app_name", "UB Mock"
     }
+  }
+
+  sourceSets {
+    dev.java.srcDir 'src/dev/java'
+
+    mock.java.srcDir 'src/mock/java'
+    test.java.srcDir 'src/mockUnitTest/java'
+
+    pro.java.srcDir 'src/pro/java'
   }
 
   compileOptions {
@@ -74,6 +86,9 @@ dependencies {
   // Because RxAndroid releases are few and far between, it is recommended you also
   // explicitly depend on RxJava's latest version for bug fixes and new features.
   compile 'io.reactivex:rxjava:1.1.0'
+  compile 'com.github.talenguyen:LceeBinding:2.0.0'
+  compile 'com.github.bumptech.glide:glide:3.7.0'
+  compile 'com.google.code.gson:gson:2.6.2'
 
   apt "org.immutables:value:2.1.15" // <-- for annotation processor
   provided "org.immutables:value:2.1.15" // <-- for annotation API

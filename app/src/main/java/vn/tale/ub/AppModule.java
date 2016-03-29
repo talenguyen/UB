@@ -17,6 +17,10 @@ import vn.tale.lcebinding.NoElementException;
     this.application = application;
   }
 
+  @Provides @Singleton public Application provideApplication() {
+    return application;
+  }
+
   @Provides @Singleton public ErrorMessageProvider provideErrorMessageProvider() {
     return new ErrorMessageProvider() {
       @Override public String getErrorMessage(Throwable throwable) {

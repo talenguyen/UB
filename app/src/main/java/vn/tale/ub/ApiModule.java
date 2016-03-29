@@ -1,18 +1,13 @@
 package vn.tale.ub;
 
-import dagger.Module;
-import dagger.Provides;
-import javax.inject.Singleton;
+import android.app.Application;
 import vn.tale.ub.ui.list.UserListApi;
 
 /**
  * Author giangnguyen. Created on 3/29/16.
  */
-@Module
-public class ApiModule {
+public interface ApiModule {
 
-  @Provides @Singleton public UserListApi provideUserListApi() {
-    return null;
-  }
+  UserListApi provideUserListApi(Application application);
 
 }
