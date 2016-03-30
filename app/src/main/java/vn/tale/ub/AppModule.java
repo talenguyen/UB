@@ -5,7 +5,7 @@ import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
 import vn.tale.lcebinding.ErrorMessageProvider;
-import vn.tale.lcebinding.NoElementException;
+import vn.tale.ub.error.NoElementException;
 
 /**
  * Author giangnguyen. Created on 3/29/16.
