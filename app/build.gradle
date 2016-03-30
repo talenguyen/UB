@@ -74,6 +74,7 @@ dependencies {
   // Because RxAndroid releases are few and far between, it is recommended you also
   // explicitly depend on RxJava's latest version for bug fixes and new features.
   compile 'io.reactivex:rxjava:1.1.0'
+  compile 'com.github.talenguyen:LceBinding:1.0.0'
 
   apt "org.immutables:value:2.1.15" // <-- for annotation processor
   provided "org.immutables:value:2.1.15" // <-- for annotation API
