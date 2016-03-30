@@ -23,12 +23,15 @@ android {
   productFlavors {
     pro {
       applicationId = "vn.tale.ub"
+      resValue "string", "app_name", "UB"
     }
     dev {
       applicationId = "vn.tale.ub.dev"
+      resValue "string", "app_name", "UB Dev"
     }
     mock {
       applicationId = "vn.tale.ub.mock"
+      resValue "string", "app_name", "UB Mock"
     }
   }
 
