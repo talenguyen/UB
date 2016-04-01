@@ -32,7 +32,7 @@ import vn.tale.ub.ui.list.UserListApi;
     return retrofit.create(GithubApi.class);
   }
 
-  @Provides @Singleton @Override public UserListApi provideUserListApi(GithubApi githubApi) {
-    return githubApi::getUsers;
+  @Provides @Singleton @Override public UserListApi provideUserListApi() {
+    return () -> provideGithubApi(provideGson()).getUsers();
   }
 }
