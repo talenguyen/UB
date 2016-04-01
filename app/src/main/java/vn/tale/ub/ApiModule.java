@@ -1,6 +1,5 @@
 package vn.tale.ub;
 
-import vn.tale.ub.api.GithubApi;
 import vn.tale.ub.ui.list.UserListApi;
 
 /**
@@ -8,6 +7,6 @@ import vn.tale.ub.ui.list.UserListApi;
  */
 public interface ApiModule {
 
-  UserListApi provideUserListApi(GithubApi githubApi);
+  UserListApi provideUserListApi();
 
 }

@@ -17,9 +17,10 @@ import vn.tale.ub.ui.list.UserListApi;
  * Author giangnguyen. Created on 3/29/16.
  */
 @Module public class AppApiModule implements ApiModule {
+  private final Application application;
 
-  @Provides @Singleton @Override public UserListApi provideUserListApi(Application application) {
-    return () -> Observable.fromCallable(() -> getMockUsers(application));
+  public AppApiModule(Application application) {
+    this.application = application;
   }
 
   private List<User> getMockUsers(Application application) throws IOException {
@@ -27,5 +28,10 @@ import vn.tale.ub.ui.list.UserListApi;
     final InputStream inputStream = application.getAssets().open("users.json");
     final TypeToken<List<User>> typeToken = new TypeToken<List<User>>() {};
     return GsonUtils.readJsonStream(inputStream, typeToken.getType());
+  }
+
+  @Provides @Singleton @Override public UserListApi provideUserListApi() {
+    return () -> Observable.fromCallable(() -> getMockUsers(application));
+
   }
 }
