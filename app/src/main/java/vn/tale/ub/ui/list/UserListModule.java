@@ -6,6 +6,8 @@ import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import vn.tale.lcebinding.ErrorMessageProvider;
+import vn.tale.lcebinding.LceBinding;
+import vn.tale.lcebinding.LoadingContentError;
 import vn.tale.lcebinding.ThreadScheduler;
 
 /**
@@ -30,9 +32,18 @@ public class UserListModule {
     };
   }
 
-  @Provides public UserListVM provideUesrListVM(ErrorMessageProvider errorMessageProvider,
+  @Provides public UserListVM provideUesrListVM(LceBinding lceBinding,
       ThreadScheduler threadScheduler, UserListApi apiClient) {
-    return new UserListVM(errorMessageProvider, threadScheduler, apiClient);
+    return new UserListVM(lceBinding, apiClient, threadScheduler);
+  }
+
+  @Provides
+  public LoadingContentError provideLoadingContentError(ErrorMessageProvider errorMessageProvider) {
+    return new LoadingContentError(errorMessageProvider);
+  }
+
+  @Provides public LceBinding provideLceBinding(LoadingContentError loadingContentError) {
+    return new LceBinding(loadingContentError);
   }
 
 }

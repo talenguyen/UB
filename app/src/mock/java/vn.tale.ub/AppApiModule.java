@@ -31,7 +31,15 @@ import vn.tale.ub.ui.list.UserListApi;
   }
 
   @Provides @Singleton @Override public UserListApi provideUserListApi() {
-    return () -> Observable.fromCallable(() -> getMockUsers(application));
-
+    return () -> {
+      final long delta = System.currentTimeMillis() % 3;
+      System.out.println("delta: " + delta);
+      if (delta == 0) {
+        return Observable.error(new RuntimeException());
+      } else if (delta == 1) {
+        return Observable.empty();
+      }
+      return Observable.fromCallable(() -> getMockUsers(application));
+    };
   }
 }

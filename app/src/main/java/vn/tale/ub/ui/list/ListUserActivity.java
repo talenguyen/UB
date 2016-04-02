@@ -1,50 +1,65 @@
 package vn.tale.ub.ui.list;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import javax.inject.Inject;
-import rx.Subscription;
 import vn.tale.ub.App;
 import vn.tale.ub.R;
+import vn.tale.ub.ui.binding.ErrorTextView;
+import vn.tale.ub.ui.binding.ToggleVisibleGone;
+import vn.tale.lcebinding.ErrorView;
+import vn.tale.lcebinding.ShowHideView;
 
 public class ListUserActivity extends AppCompatActivity {
-  private static final String TAG = "ListUserActivity";
   @Inject UserListAdapter adapter;
   @Inject UserListVM viewModel;
-  private RecyclerView recyclerView;
-  private View vLoading;
-  private TextView tvError;
-  private Subscription loadUserSubscription;
+
+  @Bind(R.id.list) RecyclerView recyclerView;
+  @Bind(R.id.vProgress) View vLoading;
+  @Bind(R.id.tvError) TextView tvError;
+
+  private ShowHideView loadingView;
+  private ErrorView errorView;
+  private ShowHideView contentView;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    App.get(this).getComponent().plus(new UserListModule()).inject(this);
+    ButterKnife.bind(this);
 
-    findViews();
-
-    setupBinding();
+    setupDependencies();
 
     setupListView();
   }
 
+  private void setupDependencies() {
+    App.get(this).getComponent().plus(new UserListModule()).inject(this);
+    loadingView = new ToggleVisibleGone(vLoading);
+    errorView = new ErrorTextView(tvError);
+    contentView = new ToggleVisibleGone(recyclerView);
+  }
+
   @Override protected void onResume() {
     super.onResume();
-    loadUserSubscription = viewModel.load()
-        .subscribe(adapter::setItems, throwable -> Log.e(TAG, "load user error", throwable));
+    viewModel.binding().bind(loadingView, contentView, errorView);
+    loadData();
+  }
+
+  @OnClick(R.id.tvError)
+  public void loadData() {
+    viewModel.load();
   }
 
   @Override protected void onPause() {
-    if (loadUserSubscription != null) {
-      loadUserSubscription.unsubscribe();
-    }
+    viewModel.unsubscribe();
     super.onPause();
   }
 
@@ -55,32 +70,6 @@ public class ListUserActivity extends AppCompatActivity {
       recyclerView.setHasFixedSize(true);
       recyclerView.setAdapter(adapter);
     }
-  }
-
-  private void setupBinding() {
-    viewModel.isLoading()
-        .subscribe(loading -> {
-          vLoading.setVisibility(loading ? View.VISIBLE : View.GONE);
-        });
-
-    viewModel.isError()
-        .subscribe(error -> {
-          tvError.setVisibility(error ? View.VISIBLE : View.GONE);
-        });
-
-    viewModel.errorMessage().subscribe(tvError::setText);
-
-    viewModel.lightError()
-        .subscribe(msg -> Toast.makeText(ListUserActivity.this, msg, Toast.LENGTH_SHORT).show());
-
-    viewModel.isShowContent()
-        .subscribe(
-            showContent -> recyclerView.setVisibility(showContent ? View.VISIBLE : View.GONE));
-  }
-
-  private void findViews() {
-    recyclerView = (RecyclerView) findViewById(R.id.list);
-    vLoading = findViewById(R.id.vProgress);
-    tvError = (TextView) findViewById(R.id.tvError);
+    viewModel.getUsersStream().subscribe(adapter::setItems);
   }
 }

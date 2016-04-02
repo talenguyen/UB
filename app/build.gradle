@@ -91,7 +91,8 @@ dependencies {
   compile 'com.squareup.retrofit2:retrofit:2.0.0'
   compile 'com.squareup.retrofit2:converter-gson:2.0.0'
   compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
-  compile 'com.github.talenguyen:lceebinding:2.0.0'
+  compile 'com.github.talenguyen:lcebinding:2.0.0'
+  compile 'com.jakewharton:butterknife:7.0.1'
 
   apt "org.immutables:value:2.1.15" // <-- for annotation processor
   provided "org.immutables:value:2.1.15" // <-- for annotation API
