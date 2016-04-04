@@ -19,7 +19,7 @@ import vn.tale.ub.util.ThreadScheduler;
     return new ComputationMainThreadScheduler();
   }
 
-  @Provides public UserListVM provideUesrListVM(LoadingContentError loadingContentError,
+  @Provides public UserListVM provideUserListVM(LoadingContentError loadingContentError,
       ThreadScheduler threadScheduler, UserListApi apiClient) {
     return new UserListVM(loadingContentError, apiClient, threadScheduler);
   }
