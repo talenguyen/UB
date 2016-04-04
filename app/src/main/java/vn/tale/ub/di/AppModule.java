@@ -1,4 +1,4 @@
-package vn.tale.ub;
+package vn.tale.ub.di;
 
 import android.app.Application;
 import dagger.Module;
@@ -6,6 +6,7 @@ import dagger.Provides;
 import java.util.NoSuchElementException;
 import javax.inject.Singleton;
 import vn.tale.lcebinding.ErrorMessageProvider;
+import vn.tale.ub.R;
 
 /**
  * Author giangnguyen. Created on 3/29/16.

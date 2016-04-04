@@ -1,4 +1,4 @@
-package vn.tale.ub;
+package vn.tale.ub.di;
 
 import vn.tale.ub.ui.list.UserListApi;
 

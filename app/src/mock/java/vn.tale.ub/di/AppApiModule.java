@@ -1,4 +1,4 @@
-package vn.tale.ub;
+package vn.tale.ub.di;
 
 import android.app.Application;
 import android.os.SystemClock;
@@ -10,6 +10,8 @@ import java.io.InputStream;
 import java.util.List;
 import javax.inject.Singleton;
 import rx.Observable;
+import vn.tale.ub.GsonUtils;
+import vn.tale.ub.di.ApiModule;
 import vn.tale.ub.model.User;
 import vn.tale.ub.ui.list.UserListApi;
 

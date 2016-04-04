@@ -1,4 +1,4 @@
-package vn.tale.ub;
+package vn.tale.ub.di;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

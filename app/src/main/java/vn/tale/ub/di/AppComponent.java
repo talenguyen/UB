@@ -1,4 +1,4 @@
-package vn.tale.ub;
+package vn.tale.ub.di;
 
 import dagger.Component;
 import javax.inject.Singleton;

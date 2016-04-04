@@ -2,6 +2,8 @@ package vn.tale.ub;
 
 import android.app.Application;
 import android.content.Context;
+import vn.tale.ub.di.AppComponent;
+import vn.tale.ub.di.DaggerAppComponent;
 
 /**
  * Author giangnguyen. Created on 4/1/16.
