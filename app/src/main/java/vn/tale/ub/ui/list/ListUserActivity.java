@@ -10,13 +10,13 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import javax.inject.Inject;
+import vn.tale.lcebinding.ErrorView;
 import vn.tale.lcebinding.LceBinding;
+import vn.tale.lcebinding.ShowHideView;
 import vn.tale.ub.App;
 import vn.tale.ub.R;
 import vn.tale.ub.ui.binding.ErrorTextView;
 import vn.tale.ub.ui.binding.ToggleVisibleGone;
-import vn.tale.lcebinding.ErrorView;
-import vn.tale.lcebinding.ShowHideView;
 
 public class ListUserActivity extends AppCompatActivity {
   @Inject UserListAdapter adapter;
