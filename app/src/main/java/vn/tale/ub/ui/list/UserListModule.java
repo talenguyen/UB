@@ -5,6 +5,7 @@ import dagger.Provides;
 import vn.tale.lcebinding.ErrorMessageProvider;
 import vn.tale.lcebinding.LceBinding;
 import vn.tale.lcebinding.LoadingContentError;
+import vn.tale.ub.di.ActivityScope;
 import vn.tale.ub.util.ComputationMainThreadScheduler;
 import vn.tale.ub.util.ThreadScheduler;
 
@@ -27,7 +28,7 @@ public class UserListModule {
     return new UserListVM(loadingContentError, apiClient, threadScheduler);
   }
 
-  @Provides
+  @ActivityScope @Provides
   public LoadingContentError provideLoadingContentError(ErrorMessageProvider errorMessageProvider) {
     return new LoadingContentError(errorMessageProvider);
   }
