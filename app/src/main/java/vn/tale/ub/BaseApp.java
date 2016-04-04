@@ -2,16 +2,16 @@ package vn.tale.ub;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 /**
- * Author giangnguyen. Created on 3/29/16.
+ * Author giangnguyen. Created on 4/1/16.
  */
-public class App extends Application {
+public abstract class BaseApp extends Application {
+
   private AppComponent component;
 
-  public static App get(Context context) {
-    return (App) context.getApplicationContext();
+  public static BaseApp get(Context context) {
+    return (BaseApp) context.getApplicationContext();
   }
   @Override public void onCreate() {
     super.onCreate();
@@ -24,7 +24,6 @@ public class App extends Application {
     return component;
   }
 
-  @NonNull protected DaggerAppComponent.Builder prepareAppComponentBuilder() {
-    return DaggerAppComponent.builder();
-  }
+
+  protected abstract DaggerAppComponent.Builder prepareAppComponentBuilder();
 }

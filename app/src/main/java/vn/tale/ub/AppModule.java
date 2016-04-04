@@ -3,9 +3,9 @@ package vn.tale.ub;
 import android.app.Application;
 import dagger.Module;
 import dagger.Provides;
+import java.util.NoSuchElementException;
 import javax.inject.Singleton;
 import vn.tale.lcebinding.ErrorMessageProvider;
-import vn.tale.ub.error.NoElementException;
 
 /**
  * Author giangnguyen. Created on 3/29/16.
@@ -17,18 +17,16 @@ import vn.tale.ub.error.NoElementException;
     this.application = application;
   }
 
-  @Provides @Singleton public ErrorMessageProvider provideErrorMessageProvider() {
-    return new ErrorMessageProvider() {
-      @Override public String getErrorMessage(Throwable throwable) {
-        if (throwable instanceof NoElementException) {
-          return application.getString(R.string.error_empty);
-        }
-        return application.getString(R.string.error_try_again);
-      }
+  @Provides @Singleton public Application provideApplication() {
+    return application;
+  }
 
-      @Override public String getLightErrorMessage(Throwable throwable) {
-        return getErrorMessage(throwable);
+  @Provides @Singleton public ErrorMessageProvider provideErrorMessageProvider() {
+    return throwable -> {
+      if (throwable instanceof NoSuchElementException) {
+        return application.getString(R.string.error_empty);
       }
+      return application.getString(R.string.error_try_again);
     };
   }
 
