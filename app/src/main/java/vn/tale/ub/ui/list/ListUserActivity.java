@@ -51,7 +51,7 @@ public class ListUserActivity extends AppCompatActivity {
 
   @Override protected void onResume() {
     super.onResume();
-    lceBinding.bind(loadingView, contentView, errorView);
+    lceBinding.bind(viewModel.getLce(), loadingView, contentView, errorView);
     loadData();
   }
 

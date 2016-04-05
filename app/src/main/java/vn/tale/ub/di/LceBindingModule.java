@@ -12,12 +12,12 @@ import vn.tale.lcebinding.LoadingContentError;
 @Module
 public class LceBindingModule {
 
-  @ActivityScope @Provides
+  @Provides
   public LoadingContentError provideLoadingContentError(ErrorMessageProvider errorMessageProvider) {
     return new LoadingContentError(errorMessageProvider);
   }
 
-  @Provides public LceBinding provideLceBinding(LoadingContentError loadingContentError) {
-    return new LceBinding(loadingContentError);
+  @Provides public LceBinding provideLceBinding() {
+    return new LceBinding();
   }
 }

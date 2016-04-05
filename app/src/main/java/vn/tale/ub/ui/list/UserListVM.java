@@ -31,6 +31,10 @@ public class UserListVM {
     this.threadScheduler = threadScheduler;
   }
 
+  public LoadingContentError getLce() {
+    return loadingContentError;
+  }
+
   public SerializedRelay<List<User>, List<User>> getUsersStream() {
     return usersStream;
   }
